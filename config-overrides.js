@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const { override, addWebpackAlias } = require('customize-cra');
 const path = require("path");
 
 module.exports = function override(config, env) {
@@ -9,11 +10,9 @@ module.exports = function override(config, env) {
     crypto: require.resolve("crypto-browserify"),
   };
 
-  plugins: [
-    new NodePolyfillPlugin({
-      excludeAliases: ['console-browserify'] // Exclude console polyfill
-    })
-  ]
+  addWebpackAlias({
+    'console-browserify': path.resolve(__dirname, 'node_modules/console-browserify'),
+  })
 
   config.plugins.push(new NodePolyfillPlugin());
 
