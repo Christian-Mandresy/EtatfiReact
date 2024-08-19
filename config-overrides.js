@@ -14,8 +14,15 @@ module.exports = function override(config, env) {
     'console-browserify': path.resolve(__dirname, 'node_modules/console-browserify'),
   })
 
+<<<<<<< HEAD
   // Ajout de NodePolyfillPlugin pour les polyfills des modules Node.js
   config.plugins.push(new NodePolyfillPlugin());
 
+=======
+  config.plugins.push(new NodePolyfillPlugin());
+
+
+
+>>>>>>> d58aefcbd6dfa74b4c98e47af978ad62d1824e6c
   return config;
 };
