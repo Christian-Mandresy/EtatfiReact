@@ -11,16 +11,13 @@ module.exports = function override(config, env) {
 
   plugins: [
     new NodePolyfillPlugin({
-      excludeAliases: ['console'] // Exclude console polyfill
+      excludeAliases: ['console-browserify'] // Exclude console polyfill
     })
   ]
 
   config.plugins.push(new NodePolyfillPlugin());
 
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    'console-browserify': path.resolve(__dirname, 'node_modules/console-browserify'),
-  };
+
 
   return config;
 };
