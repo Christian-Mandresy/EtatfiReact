@@ -9,6 +9,12 @@ module.exports = function override(config, env) {
     crypto: require.resolve("crypto-browserify"),
   };
 
+  plugins: [
+    new NodePolyfillPlugin({
+      excludeAliases: ['console'] // Exclude console polyfill
+    })
+  ]
+
   config.plugins.push(new NodePolyfillPlugin());
 
   config.resolve.alias = {
