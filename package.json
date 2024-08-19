@@ -44,6 +44,8 @@
   ],
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.4.0",
+    "ajv": "^8.17.1",
+    "ajv-keywords": "^5.1.0",
     "axios": "^1.5.1",
     "bootstrap": "4.6.2",
     "buffer": "^6.0.3",
@@ -52,6 +54,7 @@
     "crypto-browserify": "^3.12.0",
     "date-fns": "^3.6.0",
     "jsonwebtoken": "^9.0.2",
+    "mini-css-extract-plugin": "^2.9.0",
     "moment": "2.29.4",
     "nouislider": "15.4.0",
     "react": ">=16.0.0",
