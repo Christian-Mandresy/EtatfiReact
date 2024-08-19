@@ -1,0 +1,40 @@
+.shadow.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%);
+}
+
+.card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: #f8f9fa;
+}
+
+.table-responsive {
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.table-flush th,
+.table-flush td {
+    white-space: nowrap;
+}
+
+.thead-light th {
+    color: #8898aa;
+    background-color: #f6f9fc;
+}
+
+.card-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: #f8f9fa;
+}
+
+.pagination .page-item .page-link {
+    color: #5e72e4;
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #5e72e4;
+    border-color: #5e72e4;
+}
