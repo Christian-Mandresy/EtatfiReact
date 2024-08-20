@@ -36,6 +36,7 @@ import {
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import image from '../../assets/img/theme/team-4-800x800.jpg';
 
 const AdminNavbar = (props) => {
   const handleLogout = async () => {
@@ -82,7 +83,7 @@ const AdminNavbar = (props) => {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={require("../../assets/img/theme/team-4-800x800.jpg")}
+                      src={image}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
