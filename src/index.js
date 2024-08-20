@@ -15,7 +15,7 @@ import Login from "views/Login.js";
 import AdminL from "layouts/Admin.js";
 import AuthL from "layouts/Auth.js";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://etatfilaravel-production.up.railway.app/";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.withCredentials = true;
