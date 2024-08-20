@@ -35,6 +35,7 @@ import {
 } from "reactstrap";
 
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const AdminNavbar = (props) => {
   const handleLogout = async () => {
@@ -49,7 +50,11 @@ const AdminNavbar = (props) => {
         };
 
         // Appel de l'API de déconnexion côté serveur
-        await axios.post('/api/logout', {}, { headers });
+        await axios.post('/api/logout', { headers }, {
+          headers: {
+            'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
+          }
+        });
 
         // Effacer le token stocké côté client
         localStorage.removeItem('token');

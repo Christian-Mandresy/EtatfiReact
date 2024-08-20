@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 
 
 
@@ -47,10 +49,14 @@ const Login = () => {
   
     try {
       await axios.get('/sanctum/csrf-cookie');
-      const response = await axios.post('/api/login', loginInput);
+      const response = await axios.post('/api/login', loginInput, {
+        headers: {
+          'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
+        }
+      });
       
 
-     console.log(response.data);
+     console.log("headers : ",response.headers);
 
       // Extrait le token et le rôle de la réponse
       const { token, role } = response.data;

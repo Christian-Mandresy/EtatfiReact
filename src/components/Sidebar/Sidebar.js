@@ -54,7 +54,7 @@ import {
 
 var ps;
 
-const Sidebar = (props) => {
+const Sidebar = ({ routes = [{}] }) => {
     const [collapseOpen, setCollapseOpen] = useState();
     // verifies if routeName is the one active (in browser input)
     const activeRoute = (routeName) => {
@@ -268,9 +268,6 @@ const Sidebar = (props) => {
   );
 };
 
-Sidebar.defaultProps = {
-  routes: [{}],
-};
 
 Sidebar.propTypes = {
   // links that will be displayed inside the component

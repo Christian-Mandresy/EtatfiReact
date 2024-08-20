@@ -1,92 +1,65 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*eslint-disable*/
-import { useState } from "react";
+import React, { useState } from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-// nodejs library to set properties for components
-import { PropTypes } from "prop-types";
-
-// reactstrap components
+import PropTypes from "prop-types";
 import {
   Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
-  DropdownMenu,
   DropdownItem,
-  UncontrolledDropdown,
+  DropdownMenu,
   DropdownToggle,
-  FormGroup,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
   Media,
-  NavbarBrand,
   Navbar,
+  NavbarBrand,
+  Nav,
   NavItem,
   NavLink,
-  Nav,
-  Progress,
-  Table,
+  UncontrolledDropdown,
   Container,
   Row,
   Col,
 } from "reactstrap";
 
-var ps;
+// Composant Sidebar avec des paramètres par défaut
+const Sidebar = ({ bgColor, routes = [{}], logo }) => {
+  const [collapseOpen, setCollapseOpen] = useState(false);
 
-const Sidebar = (props) => {
-    const [collapseOpen, setCollapseOpen] = useState();
-    // verifies if routeName is the one active (in browser input)
-    const activeRoute = (routeName) => {
-      return props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
-    };
-    // toggles collapse between opened and closed (true/false)
-    const toggleCollapse = () => {
-      setCollapseOpen((data) => !data);
-    };
-    // closes the collapse
-    const closeCollapse = () => {
-      setCollapseOpen(false);
-    };
-    // creates the links that appear in the left menu / Sidebar
-    const createLinks = (routes) => {
-      return routes.map((prop, key) => {
-        return (
-          <NavItem key={key}>
-            <NavLink
-              to={prop.layout + prop.path}
-              tag={NavLinkRRD}
-              onClick={closeCollapse}
-            >
-              <i className={prop.icon} />
-              {prop.name}
-            </NavLink>
-          </NavItem>
-        );
-      });
+  // vérifie si routeName est active (dans l'entrée du navigateur)
+  const activeRoute = (routeName) => {
+    return window.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
 
-  const { bgColor, routes, logo } = props;
+  // bascule entre ouvert et fermé (true/false)
+  const toggleCollapse = () => {
+    setCollapseOpen(!collapseOpen);
+  };
+
+  // ferme le collapse
+  const closeCollapse = () => {
+    setCollapseOpen(false);
+  };
+
+  // crée les liens qui apparaissent dans le menu de gauche / Sidebar
+  const createLinks = (routes) => {
+    return routes.map((prop, key) => (
+      <NavItem key={key}>
+        <NavLink
+          to={prop.layout + prop.path}
+          tag={NavLinkRRD}
+          onClick={closeCollapse}
+        >
+          <i className={prop.icon} />
+          {prop.name}
+        </NavLink>
+      </NavItem>
+    ));
+  };
+
   let navbarBrandProps;
   if (logo && logo.innerLink) {
     navbarBrandProps = {
@@ -107,7 +80,6 @@ const Sidebar = (props) => {
       id="sidenav-main"
     >
       <Container fluid>
-        {/* Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -115,8 +87,7 @@ const Sidebar = (props) => {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        {/* Brand */}
-        {logo ? (
+        {logo && (
           <NavbarBrand className="pt-0" {...navbarBrandProps}>
             <img
               alt={logo.imgAlt}
@@ -124,8 +95,7 @@ const Sidebar = (props) => {
               src={logo.imgSrc}
             />
           </NavbarBrand>
-        ) : null}
-        {/* User */}
+        )}
         <Nav className="align-items-center d-md-none">
           <UncontrolledDropdown nav>
             <DropdownToggle nav className="nav-link-icon">
@@ -181,12 +151,10 @@ const Sidebar = (props) => {
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
-        {/* Collapse */}
         <Collapse navbar isOpen={collapseOpen}>
-          {/* Collapse header */}
           <div className="navbar-collapse-header d-md-none">
             <Row>
-              {logo ? (
+              {logo && (
                 <Col className="collapse-brand" xs="6">
                   {logo.innerLink ? (
                     <Link to={logo.innerLink}>
@@ -198,7 +166,7 @@ const Sidebar = (props) => {
                     </a>
                   )}
                 </Col>
-              ) : null}
+              )}
               <Col className="collapse-close" xs="6">
                 <button
                   className="navbar-toggler"
@@ -211,7 +179,6 @@ const Sidebar = (props) => {
               </Col>
             </Row>
           </div>
-          {/* Form */}
           <Form className="mt-4 mb-3 d-md-none">
             <InputGroup className="input-group-rounded input-group-merge">
               <Input
@@ -227,35 +194,21 @@ const Sidebar = (props) => {
               </InputGroupAddon>
             </InputGroup>
           </Form>
-          {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
-          {/* Divider */}
           <hr className="my-3" />
-          {/* Heading */}
-          
         </Collapse>
       </Container>
     </Navbar>
   );
 };
 
-Sidebar.defaultProps = {
-  routes: [{}],
-};
-
+// PropTypes pour Sidebar
 Sidebar.propTypes = {
-  // links that will be displayed inside the component
   routes: PropTypes.arrayOf(PropTypes.object),
   logo: PropTypes.shape({
-    // innerLink is for links that will direct the user within the app
-    // it will be rendered as <Link to="...">...</Link> tag
     innerLink: PropTypes.string,
-    // outterLink is for links that will direct the user outside the app
-    // it will be rendered as simple <a href="...">...</a> tag
     outterLink: PropTypes.string,
-    // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
-    // the alt for the img
     imgAlt: PropTypes.string.isRequired,
   }),
 };
