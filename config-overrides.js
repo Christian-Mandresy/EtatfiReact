@@ -14,10 +14,6 @@ module.exports = function override(config, env) {
     'console-browserify': path.resolve(__dirname, 'node_modules/console-browserify'),
   })
 
-  // Définir le port et l'hôte
-  if (env === 'development') {
-    process.env.PORT = 8080;
-    process.env.HOST = '0.0.0.0';
-  }
+
   return config;
 };
