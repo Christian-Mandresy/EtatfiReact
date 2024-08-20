@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
   },
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
+  "homepage": ".",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "CI=false react-app-rewired build",
