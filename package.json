@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
   },
-  "homepage": "https://etatfireact-production.up.railway.app/",
+  "homepage": ".",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "CI=false node --max-old-space-size=4096 node_modules/.bin/react-app-rewired build",
