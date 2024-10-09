@@ -36,7 +36,6 @@ import {
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import image from '../../assets/img/theme/team-4-800x800.jpg';
 
 const AdminNavbar = (props) => {
   const handleLogout = async () => {
@@ -44,23 +43,24 @@ const AdminNavbar = (props) => {
       await axios.get('/sanctum/csrf-cookie');
         // Récupérer le token stocké
         const token = localStorage.getItem('token');
+        console.log('token coté client ',token)
         
         // Configuration des headers avec le token
         const headers = {
+          'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
             Authorization: `Bearer ${token}`,
         };
+        
+        
 
         // Appel de l'API de déconnexion côté serveur
-        await axios.post('/api/logout', { headers }, {
-          headers: {
-            'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-          }
-        });
+        const response = await axios.post('/api/logout', {}, { headers });
+        console.log("headers : ",response.headers);
 
         // Effacer le token stocké côté client
         localStorage.removeItem('token');
 
-        // Redirection vers la page de connexion (par exemple)
+        // Redirection vers la page de connexion 
         window.location.href = '/auth/login';
     } catch (error) {
         console.error('Erreur lors de la déconnexion :', error);
@@ -83,7 +83,7 @@ const AdminNavbar = (props) => {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src={image}
+                      src={require("../../assets/img/theme/team-4-800x800.jpg")}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
