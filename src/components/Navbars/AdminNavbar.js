@@ -61,7 +61,7 @@ const AdminNavbar = (props) => {
         localStorage.removeItem('token');
 
         // Redirection vers la page de connexion 
-        window.location.href = '/auth/login';
+        window.location.href = 'https://etatfi-react.vercel.app/';
     } catch (error) {
         console.error('Erreur lors de la déconnexion :', error);
     }
